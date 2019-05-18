@@ -1,21 +1,34 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
 
-function App() {
-  function contar() {}
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 0
+    };
 
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      <p>
-        Count: <span id="qtd">0</span>
-      </p>
-      <button onClick={contar}>Count</button>
-    </div>
-  );
+    this.onCount = this.onCount.bind(this);
+  }
+
+  onCount(e) {
+    this.setState({ count: this.state.count + 1 });
+  }
+
+  render() {
+    const { count } = this.state;
+    return (
+      <div className="App">
+        {count}
+        <br />
+        <button id="countClick" name="countClick" onClick={this.onCount}>
+          Count
+        </button>
+      </div>
+    );
+  }
 }
 
 const rootElement = document.getElementById("root");
